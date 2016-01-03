@@ -51,6 +51,19 @@ println(centr)
 
 
 
+#=Testujemy na dosyć dobrych medoid i innego sposobu liczenia odległości=#
+C = pairwise(Cityblock(), X, Y)
+
+med = [2; 5; 9;]
+R = kmedoids!(C, med; maxiter=100, display=:iter)
+@assert nclusters(R) == 3
+as = assignments(R)
+@assert as == [1; 1; 2; 2; 2; 2; 2; 3; 3; 3;]
+centr = R.medoids
+@assert centr == med
+println(as)
+println(centr)
+
 
 
 
